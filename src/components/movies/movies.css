@@ -1,0 +1,16 @@
+.movies {
+  margin: 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  /* gap: 2rem; */
+  color: white;
+}
+
+.movie__img {
+  width: 100%;
+  display: block;
+}
+
+.movie__title {
+  margin-top: .5rem;
+}

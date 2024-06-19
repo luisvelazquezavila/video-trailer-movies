@@ -1,0 +1,32 @@
+header {
+  margin-top: 3rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 5rem);
+  text-align: center;
+  color: white;
+}
+
+.searcher {
+  width: 90%;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.searcher__form {
+  display: flex;
+}
+
+.searcher__input-text {
+  padding: .5rem;
+  font-size: 1rem;
+  outline: 0;
+}
+
+.searcher__button {
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  margin-left: .5rem;
+}
