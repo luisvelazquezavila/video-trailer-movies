@@ -11,8 +11,10 @@ function App() {
   return (
     <SearchKeyProvider>
       <Searcher getMovies={getMovies} />
-      <TrailerDisplay />
-      <Movies movies={movies} />
+      <main>
+        <TrailerDisplay />
+        <Movies movies={movies} />
+      </main>
     </SearchKeyProvider>
   )
 }
