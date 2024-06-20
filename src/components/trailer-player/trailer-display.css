@@ -1,0 +1,7 @@
+.trailer-display {
+  min-height: 700px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}

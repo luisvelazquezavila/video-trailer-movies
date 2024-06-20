@@ -1,0 +1,12 @@
+.video-tariler {
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+
+.reproductor{
+  width: 100%;
+  height: 600px;
+}

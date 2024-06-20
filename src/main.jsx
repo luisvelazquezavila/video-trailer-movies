@@ -6,12 +6,12 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import SearchKeyProvider from './context/SearchKeyContext.jsx';
+import MoviesProvider from './context/MoviesContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <SearchKeyProvider>
+    <MoviesProvider>
       <App />
-    </SearchKeyProvider>
-  </React.StrictMode>,
+    </MoviesProvider>
+  </React.StrictMode>
 )

@@ -1,59 +1,55 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import searchMovies from "../services/searchMovies";
 import { searchMovie } from "../services/searchMovie";
+import { MoviesContext } from "../context/MoviesContext";
 
 export default function useMovies() {
+  
+  const { trailer, setTrailer, movie, setMovie } = useContext(MoviesContext);
+
   const [movies, setMovies] = useState([]);
-  // const [searchKey, setSearchKey] = useState("");
-  const [trailer, setTrailer] = useState(null);
-  const [movie, setMovie] = useState({ title: "Loading Movies" });
-  // const [playing, setPlaying] = useState(false);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const getMovies = useCallback(async ({ searchKey }) => {
-
-    // if (search === previousSearch.current) return;
-
-    try {
-      setLoading(true);
-      setError(null);
-      // previousSearch.current = search;
-      const foundMovies = await searchMovies({ searchKey });
-      setMovies(foundMovies);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-    
-  }, []); 
 
   const getMovie = useCallback(async ({ id }) => {
 
     try {
       setError(null);
-      const data = await searchMovie({ id });
+      const dataMovie = await searchMovie({ id });
 
-      if (data.videos && data.videos.results) {
-        const trailer = data.videos.results.find(
+      if (dataMovie.videos && dataMovie.videos.results) {
+        const trailer = dataMovie.videos.results.find(
           (vid) => vid.name === "Official Trailer"
         );
-        setTrailer(trailer ? trailer : data.videos.results[0]);
+        setTrailer(trailer ? trailer : dataMovie.videos.results[0]);
       }
-
-      setMovie(data);
+      setMovie(dataMovie);
     } catch (error) {
       setError(error.message);
     } 
     
-  }, []); 
+  }, [setMovie, setTrailer]); 
+
+  const getMovies = useCallback(async ({ searchKey }) => {
+
+    try {
+      setError(null);
+      const foundMovies = await searchMovies({ searchKey });
+      setMovies(foundMovies);
+      setMovie(foundMovies[0]);
+      if (foundMovies.length) {
+        await getMovie({id: foundMovies[0].id});
+      }
+    } catch (error) {
+      setError(error.message);
+    } 
+    
+  }, [setMovie, getMovie]); 
 
   const selectMovie = async ({ movie }) => {
-    getMovie(movie.id);
+    getMovie({id: movie.id});
     setMovie(movie);
     window.scrollTo(0, 0);
   };
 
-  return { movies, loading, getMovies, getMovie, selectMovie };
+  return { movies, getMovies, getMovie, selectMovie, trailer, movie };
 }

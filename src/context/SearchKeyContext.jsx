@@ -18,5 +18,5 @@ export default function SearchKeyProvider({ children }) {
 }
 
 SearchKeyProvider.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.array
 }

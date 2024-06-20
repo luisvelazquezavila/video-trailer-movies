@@ -1,21 +1,16 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import YouTube from "react-youtube";
+import useMovies from "../../../hooks/useMovies";
 import { PropTypes } from "prop-types";
+import "./video.css"
 
-export default function Video({ trailer, setPlaying }) {
+export default function Video({ setPlaying }) {
+
+  const { trailer } = useMovies();
+
   return (
-    <Box 
-      sx={{
-        width: "100%", 
-        height: "100%", 
-        display: "flex", 
-        flexDirection: "column", 
-        alignItems: "center"
-      }}>
+    <div className="video-tariler">
       <Button 
-        sx={{ 
-          width: "max-content"
-        }} 
         variant='contained' 
         onClick={() => setPlaying(false)}
       > 
@@ -41,11 +36,10 @@ export default function Video({ trailer, setPlaying }) {
           },
         }}
       />               
-    </Box>
+    </div>
   )
 }
 
 Video.propTypes = {
-  setPlaying: PropTypes.func,
-  trailer: PropTypes.object
+  setPlaying: PropTypes.func
 }
