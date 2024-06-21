@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = "2de4fdccf8723437fb4ecd3c510c2e52";
 const API_URL = "https://api.themoviedb.org/3";
 
 export const searchMovie = async ({ id }) => {
